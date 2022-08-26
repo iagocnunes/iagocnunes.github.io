@@ -1,0 +1,800 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\usepackage{pgfpages}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{: }
+\setbeamercolor{caption name}{fg=normal text.fg}
+\beamertemplatenavigationsymbolsempty
+% Prevent slide breaks in the middle of a paragraph
+\widowpenalties 1 10000
+\raggedbottom
+\setbeamertemplate{part page}{
+  \centering
+  \begin{beamercolorbox}[sep=16pt,center]{part title}
+    \usebeamerfont{part title}\insertpart\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{section page}{
+  \centering
+  \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+  \end{beamercolorbox}
+}
+\setbeamertemplate{subsection page}{
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center]{part title}
+    \usebeamerfont{subsection title}\insertsubsection\par
+  \end{beamercolorbox}
+}
+\AtBeginPart{
+  \frame{\partpage}
+}
+\AtBeginSection{
+  \ifbibliography
+  \else
+    \frame{\sectionpage}
+  \fi
+}
+\AtBeginSubsection{
+  \frame{\subsectionpage}
+}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\newif\ifbibliography
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Resultados do Paebes - Rede Estadual},
+  pdfauthor={Iago de Carvalho Nunes},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Resultados do Paebes - Rede Estadual}
+\author{Iago de Carvalho Nunes}
+\date{}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+Introdução
+
+Esta pesquisa é desenvolvida no projeto ``Estudos Educacionais'', por
+meio da parceria entre Instituto Jones dos Santos Neves (IJSN),
+Secretaria de Educação (Sedu) e Fundação de Amparo à Pesquisa (Fapes).
+
+Objetivo: analisar a evolução do desempenho dos estudantes da rede
+estadual nas provas do Paebes a fim de subsidiar os gestores da Sedu nas
+análises para tomada de decisão e na proposição/ aperfeiçoamento/
+reformulação de políticas públicas educacionais.
+
+Objetivos específicos: 1. Observar as proficiências em Língua Portuguesa
+e Matemática; 2. Acompanhar os efeitos da pandemia de COVID-19 no
+ensino; 3. Visualizar as desigualdades de proficiência por
+características dos estudantes. 4. Propor índice a partir do contextual.
+\end{frame}
+
+\begin{frame}
+Índice
+
+\begin{enumerate}[<+->]
+\tightlist
+\item
+  Sobre os dados e as etapas de análise;
+\item
+  Evolução dos resultados por características dos estudantes;
+\item
+  Análise espacial dos resultados gerais de 2021, por municípios;
+\item
+  Sobre as características educacionais de 2021;
+\item
+  Resultados de 2021 por características educacionais e do estudante;
+\item
+  Sobre indicadores.
+\end{enumerate}
+\end{frame}
+
+\hypertarget{sobre-os-dados-e-as-etapas-da-anuxe1lise-preliminar}{%
+\section{Sobre os dados e as etapas da análise
+preliminar}\label{sobre-os-dados-e-as-etapas-da-anuxe1lise-preliminar}}
+
+\begin{frame}
+Do banco de dados: filtro
+
+Selecionou-se uma população-alvo para a análise preliminar:
+
+\begin{enumerate}[<+->]
+\tightlist
+\item
+  Estudantes da rede estadual de ensino;
+\item
+  Último ano do Ensino Fundamental (de 9 ou 8 anos) e da 3ª série do
+  Ensino Médio Propedêutico;
+\item
+  Realizaram as provas de português ou matemática, possuem a
+  proficiência calculada e responderam ao questionário contextual. A
+  partir do código identificador único (chave) fornecido, une-se as duas
+  bases (contextual e resultados) em uma.
+
+  No comparativo entre a população de referência da avaliação e os
+  estudantes efetivamente avaliados, o PAEBES demonstra-se um
+  instrumento abrangente.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Tabela de Contingência}
+\protect\hypertarget{tabela-de-continguxeancia}{}
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.0875}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.4250}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3750}}
+  >{\centering\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1125}}@{}}
+\caption{Matrículas, Rede Estadual, ES (Sinopse Estatística,
+INEP).}\tabularnewline
+\toprule()
+\begin{minipage}[b]{\linewidth}\centering
+Ano
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Último ano do Ensino Fundamental
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Terceiro ano do Ensino Médio
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Total
+\end{minipage} \\
+\midrule()
+\endfirsthead
+\toprule()
+\begin{minipage}[b]{\linewidth}\centering
+Ano
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Último ano do Ensino Fundamental
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Terceiro ano do Ensino Médio
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Total
+\end{minipage} \\
+\midrule()
+\endhead
+2015 & 16.889 & 25.675 & 42.564 \\
+2016 & 16.189 & 25.101 & 41.290 \\
+2017 & 15.482 & 25.835 & 41.317 \\
+2018 & 16.600 & 24.931 & 41.531 \\
+2019 & 17.721 & 22.794 & 40.515 \\
+2021 & 19.935 & 27.737 & 47.672 \\
+Total & 102.816 & 152.073 & 254.889 \\
+\bottomrule()
+\end{longtable}
+\end{frame}
+
+\begin{frame}{Tabela de Contingência}
+\protect\hypertarget{tabela-de-continguxeancia-1}{}
+Estudantes avaliados* no PAEBES
+
+\begin{longtable}[]{@{}ccc@{}}
+\toprule()
+Ano & Último ano do Ensino Fundamental & Terceiro ano do Ensino Médio \\
+\midrule()
+\endhead
+2015 & 14.743 & 20.367 \\
+2016 & 14.185 & 19.980 \\
+2017 & 13.269 & 21.931 \\
+2018 & 14.819 & 21.152 \\
+2019 & 15.506 & 19.144 \\
+2021 & 16.840 & 20.451 \\
+Total & 89.362 & 123.025 \\
+\bottomrule()
+\end{longtable}
+
+*com a proficiência calculada e questionário preenchido.
+\end{frame}
+
+\hypertarget{evoluuxe7uxe3o-dos-resultados-por-caracteruxedsticas-dos-estudantes}{%
+\section{Evolução dos resultados por características dos
+estudantes}\label{evoluuxe7uxe3o-dos-resultados-por-caracteruxedsticas-dos-estudantes}}
+
+\begin{frame}
+Das características do estudante
+
+Para uma melhor visualização da distribuição dos dados em gráficos de
+caixa e violinos, como veremos, demanda-se categorias binárias de
+análise. Neste sentido, as características dos discentes que se
+classificam em mais de duas categorias foram transformadas em
+binárias.Quatro características foram selecionadas para a análise. São
+elas:
+
+\begin{enumerate}[<+->]
+\tightlist
+\item
+  A expressão de gênero do estudante, se masculino ou feminino;
+\item
+  A cor/raça do estudante, agregada em brancos e não brancos;
+\item
+  A distorção idade-série, se o estudante está com dois anos ou mais
+  acima da idade-ideal para a série que cursa;
+\item
+  Se o domicílio do estudante é atendido pelo programa do Governo
+  Federal de transferência de renda.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Tabela de Contingência}
+\protect\hypertarget{tabela-de-continguxeancia-2}{}
+Estudantes avaliados* no PAEBES - características selecionadas - Ensino
+Fundamental
+
+*com a proficiência calculada e questionário preenchido.
+\end{frame}
+
+\begin{frame}{Tabela de Contingência}
+\protect\hypertarget{tabela-de-continguxeancia-3}{}
+Estudantes avaliados* no PAEBES - características selecionadas - Ensino
+Médio
+
+*com a proficiência calculada e questionário preenchido.
+\end{frame}
+
+\begin{frame}
+Da análise preliminar
+
+O diagrama de caixa nos permite visualizar a variação da proficiência
+dos estudantes entre as diferentes características selecionadas, onde
+estão localizados 50\% dos valores, a mediana, a média e os valores
+extremos.
+
+O violino, que é formado pela estimativa de densidade em Kernel (EDK),
+nos permite visualizar, mais atenuadamente, a probabilidade de os dados
+assumir certo valor de proficiência, dadas certas características.
+
+O foco da apresentação são os resultados para o Ensino Médio. Os do
+Ensino Fundamental estão em apêndice.
+\end{frame}
+
+\hypertarget{resultados-por-guxeanero}{%
+\section{Resultados por gênero}\label{resultados-por-guxeanero}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Disparidades:
+
+Quando as meninas melhoram, os meninos melhoram ainda mais (mt), ou
+quando elas retrocedem, os meninos ainda melhoram (lp).
+\end{frame}
+
+\hypertarget{resultados-por-rauxe7acor}{%
+\section{Resultados por raça/cor}\label{resultados-por-rauxe7acor}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Disparidades:
+
+Enquanto os brancos permanecem em trajetória ascendente (lp e mt), os
+não brancos pioram no curto prazo (lp) e curto/longo prazo (mt).
+\end{frame}
+
+\hypertarget{resultados-por-distoruxe7uxe3o-idade-suxe9rie}{%
+\section{Resultados por distorção
+idade-série}\label{resultados-por-distoruxe7uxe3o-idade-suxe9rie}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Disparidades:
+
+Desigualdades percebidas tanto em matemática quanto em português,
+entretanto, os estudantes em distorção estão melhorando a pontuação
+média mais rapidamente que os sem distorção.
+\end{frame}
+
+\hypertarget{resultados-por-estudantes-em-domicuxedlios-atendidos-por-programa-de-transferuxeancia-de-renda}{%
+\section{\texorpdfstring{Resultados por estudantesem domicílios
+atendidos porprograma de transferência de
+renda}{Resultados por estudantes em domicílios atendidos por programa de transferência de renda}}\label{resultados-por-estudantes-em-domicuxedlios-atendidos-por-programa-de-transferuxeancia-de-renda}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Disparidades:
+
+Ambos sentem o impacto da pandemia, mas os atendidos por programa de
+transferência de renda sentem com maior intensidade.
+\end{frame}
+
+\hypertarget{resultados-por-municuxedpios}{%
+\section{Resultados por municípios}\label{resultados-por-municuxedpios}}
+
+\begin{frame}
+Proficiência média por município - Ensino Médio, 2021
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Proficiência média por município - Ensino Médio, 2021
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286
+\end{frame}
+
+\hypertarget{anuxe1lise-de-caracteruxedsticas-educacionais-de-2021}{%
+\section{Análise de características educacionais de
+2021}\label{anuxe1lise-de-caracteruxedsticas-educacionais-de-2021}}
+
+\begin{frame}
+Das características educacionais do ano de 2021
+
+Selecionou-se quatro perguntas do questionário relativas a
+características do ensino para essa análise preliminar. São elas:
+
+\begin{enumerate}[<+->]
+\tightlist
+\item
+  Se, em 2021, as aulas foram presenciais, não presenciais ou por
+  revezamento;
+\item
+  Por quantos meses o estudante ficou sem atividades escolares;
+\item
+  Quantas vezes o estudante realizou exercícios, durante o período sem
+  aulas na escola;
+\item
+  Se os pais ou responsáveis arrumaram as condições necessárias para o
+  discente estudar em casa.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Tabela de Contingência}
+\protect\hypertarget{tabela-de-continguxeancia-4}{}
+Estudantes avaliados* no PAEBES - características selecionadas - Ensino
+Fundamental
+
+*com a proficiência calculada e questionário preenchido.
+\end{frame}
+
+\begin{frame}{Tabela de Contingência}
+\protect\hypertarget{tabela-de-continguxeancia-5}{}
+Estudantes avaliados* no PAEBES - características selecionadas - Ensino
+Médio
+
+*com a proficiência calculada e questionário preenchido.
+\end{frame}
+
+\hypertarget{resultados-por-guxeanero-1}{%
+\section{Resultados por gênero}\label{resultados-por-guxeanero-1}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\hypertarget{resultados-por-rauxe7acor-1}{%
+\section{Resultados por raça/cor}\label{resultados-por-rauxe7acor-1}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\hypertarget{resultados-por-distoruxe7uxe3o-idade-suxe9rie-1}{%
+\section{Resultados por distorção
+idade-série}\label{resultados-por-distoruxe7uxe3o-idade-suxe9rie-1}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\hypertarget{resultados-por-estudantes-em-domicuxedlios-atendidos-por-programa-de-transferuxeancia-de-renda-1}{%
+\section{\texorpdfstring{Resultados por estudantesem domicílios
+atendidos porprograma de transferência de
+renda}{Resultados por estudantes em domicílios atendidos por programa de transferência de renda}}\label{resultados-por-estudantes-em-domicuxedlios-atendidos-por-programa-de-transferuxeancia-de-renda-1}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Médio: 285
+\end{frame}
+
+\hypertarget{sobre-indicadores}{%
+\section{Sobre indicadores}\label{sobre-indicadores}}
+
+\begin{frame}
+Sugestão
+
+\begin{enumerate}
+\tightlist
+\item
+  Um painel de indicadores para todas as variáveis é extenso;
+\item
+  A síntese das informações em um índice auxilia na análise dos dados,
+  inclusive para a distribuição conjunta de fatores.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+Indicador de Nível Socioeconômico - INSE/Inep
+
+\begin{itemize}
+\tightlist
+\item
+  Componentes do INSE: três dimensões, 15 indicadores (continua):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Qual é a maior escolaridade de sua/seu\ldots{}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Q008 mãe (ou mulher responsável por você)?
+    \item
+      Q009 pai (ou homem responsável por você)?
+    \end{itemize}
+  \item
+    Dos itens relacionados abaixo, quantos existem na sua casa?
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Q019 -- Geladeira
+    \item
+      Q021 -- Computador (ou notebook)
+    \item
+      Q022 -- Quartos para dormir
+    \item
+      Q023 -- Televisão
+    \item
+      Q024 -- Banheiro
+    \item
+      Q025 -- Carro
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+Indicador de Nível Socioeconômico - INSE/Inep
+
+\begin{itemize}
+\tightlist
+\item
+  Componentes do INSE: três dimensões, 15 indicadores (continuação):
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Na sua casa tem:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Q027 -- Rede wi-fi?
+    \item
+      Q029 -- Mesa para estudar (ou escrivaninha)?
+    \item
+      Q030 -- Garagem?
+    \item
+      Q031 -- Forno de micro-ondas?
+    \item
+      Q032 -- Aspirador de pó?
+    \item
+      Q033 -- Máquina de lavar roupa?
+    \item
+      Q034 -- Freezer (independente ou segunda porta da geladeira)?
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+Indicador de Nível Socioeconômico - INSE/Inep
+
+\begin{itemize}[<+->]
+\item
+  Etapas da montagem:
+\item
+\begin{verbatim}
+   Estudo dos respondentes ao questionário e das médias;
+\end{verbatim}
+\item
+\begin{verbatim}
+   Aplicação de pesos;
+\end{verbatim}
+\item
+\begin{verbatim}
+   Aplicação da Teoria de Resposta ao Item;
+\end{verbatim}
+\item
+\begin{verbatim}
+   Definição de níveis e faixas do indicador;
+\end{verbatim}
+\item
+\begin{verbatim}
+   Classificação dos municípios.
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+A metodologia pode ser reproduzida no Paebes?
+
+\end{frame}
+
+\begin{frame}
+Possibilidades
+
+Análise de tipos de indicadores e agregações:
+
+\begin{enumerate}[<+->]
+\tightlist
+\item
+  Indicadores educacionais puros, socioeducacionais, entre outros tipos;
+\item
+  Médias geométricas, aritiméticas e ponderadas;
+\item
+  Distribuições conjuntas/marginais;
+\item
+  Ajustes por desigualdades;
+\item
+  Padronização de dimensões.
+\end{enumerate}
+\end{frame}
+
+\hypertarget{apuxeandices}{%
+\section{Apêndices}\label{apuxeandices}}
+
+\hypertarget{resultados-por-guxeanero-ensino-fundamental-anos-finais}{%
+\section{\texorpdfstring{Resultados por gêneroEnsino Fundamental, Anos
+Finais}{Resultados por gênero  Ensino Fundamental, Anos Finais}}\label{resultados-por-guxeanero-ensino-fundamental-anos-finais}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Fundamental: 257
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255
+\end{frame}
+
+\hypertarget{resultados-por-rauxe7acor-ensino-fundamental-anos-finais}{%
+\section{\texorpdfstring{Resultados por raça/corEnsino Fundamental, Anos
+Finais}{Resultados por raça/cor  Ensino Fundamental, Anos Finais}}\label{resultados-por-rauxe7acor-ensino-fundamental-anos-finais}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Fundamental: 257
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255
+\end{frame}
+
+\hypertarget{resultados-por-distoruxe7uxe3o-idade-suxe9rie-ensino-fundamental-anos-finais}{%
+\section{\texorpdfstring{Resultados por distorção idade-sérieEnsino
+Fundamental, Anos
+Finais}{Resultados por distorção idade-série  Ensino Fundamental, Anos Finais}}\label{resultados-por-distoruxe7uxe3o-idade-suxe9rie-ensino-fundamental-anos-finais}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Fundamental: 257
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255
+\end{frame}
+
+\hypertarget{resultados-por-estudantes-em-domicuxedlios-atendidos-por-programa-de-transferuxeancia-de-renda-ensino-fundamental-anos-finais}{%
+\section{\texorpdfstring{Resultados por estudantesem domicílios
+atendidos porprograma de transferência de rendaEnsino Fundamental, Anos
+Finais}{Resultados por estudantes em domicílios atendidos por programa de transferência de renda  Ensino Fundamental, Anos Finais}}\label{resultados-por-estudantes-em-domicuxedlios-atendidos-por-programa-de-transferuxeancia-de-renda-ensino-fundamental-anos-finais}}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Matemática, Ensino Fundamental: 257
+\end{frame}
+
+\begin{frame}
+Análise da distribuição: tendência central e dispersão.
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255
+\end{frame}
+
+\hypertarget{resultados-por-municuxedpios-ensino-fundamental-anos-finais}{%
+\section{\texorpdfstring{Resultados por municípiosEnsino Fundamental,
+Anos
+Finais}{Resultados por municípios  Ensino Fundamental, Anos Finais}}\label{resultados-por-municuxedpios-ensino-fundamental-anos-finais}}
+
+\begin{frame}
+Proficiência média por município - Matemática, Ensino Fundamental, 2021
+
+Proficiência Média Estadual, Matemática, Ensino Fundamental: 257
+\end{frame}
+
+\begin{frame}
+Proficiência média por município - Língua Portuguesa, Ensino
+Fundamental, 2021
+
+Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255
+\end{frame}
+
+\end{document}

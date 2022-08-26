@@ -1,0 +1,1819 @@
+---
+title: "Resultados do Paebes - Rede Estadual"
+author: "Iago de Carvalho Nunes"
+output:
+  ioslides_presentation:
+    logo: "../../img/ijsn-govestadual.png"
+    widescreen: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+<style>
+p {
+  font-size:100%;
+}
+ol {
+  font-size:90%;
+}
+li {
+  font-size:90%;
+}
+table, th, td {
+  border: 1px solid #fff;
+  border-collapse: collapse;
+  font-size:90%;
+  padding: 10px;
+}
+td { background-color: #deeafa; }
+</style>
+
+---
+
+<h1>Introdução</h1><br><br>
+<p>Esta pesquisa é desenvolvida no projeto "Estudos Educacionais", por meio da parceria entre Instituto Jones dos Santos Neves (IJSN), Secretaria de Educação (Sedu) e Fundação de Amparo à Pesquisa (Fapes).</p>
+<p>
+<b>Objetivo:</b> analisar a evolução do desempenho dos estudantes da rede estadual nas provas do Paebes a fim de subsidiar os gestores da Sedu nas análises para tomada de decisão e na proposição/ aperfeiçoamento/ reformulação de políticas públicas educacionais.
+</p>
+<p>
+<b>Objetivos específicos:</b><br>
+1.  Observar as proficiências em Língua Portuguesa e Matemática;<br>
+2.  Acompanhar os efeitos da pandemia de COVID-19 no ensino;<br>
+3.  Visualizar as desigualdades de proficiência por características dos estudantes.<br>
+4.  Propor índice a partir do contextual.
+</p>
+
+---
+
+<h1>Índice</h1><br><br>
+<p>
+> 1.  Sobre os dados e as etapas de análise;<br>
+> 2.  Evolução dos resultados por características dos estudantes;<br>
+> 3.  Análise espacial dos resultados gerais de 2021, por municípios;<br>
+> 4.  Sobre as características educacionais de 2021;<br>
+> 5.	Resultados de 2021 por características educacionais e do estudante;
+> 6.  Sobre indicadores.
+</p>
+
+# Sobre os dados e as etapas da análise preliminar
+
+---
+
+<h1>Do banco de dados: filtro</h1><br><br><br>
+<p>
+Selecionou-se uma população-alvo para a análise preliminar:</p>
+<p>
+> 1.  Estudantes da rede estadual de ensino;
+> 2.  Último ano do Ensino Fundamental (de 9 ou 8 anos) e da 3ª série do Ensino Médio Propedêutico;
+> 3.  Realizaram as provas de português ou matemática, possuem a proficiência calculada e responderam ao questionário contextual.
+</p>
+
+---
+
+<h1>Do banco de dados: filtro</h1><br><br><br><br>
+<p>
+>- A partir do código identificador único (chave) fornecido, une-se as duas bases (contextual e resultados) em uma.</p>
+<p>
+>- No comparativo entre a população de referência da avaliação e os estudantes efetivamente avaliados, o PAEBES demonstra-se um instrumento abrangente.
+</p>
+
+## Tabela de Contingência
+
+<h1 style="font-size:2vw"; align="center">Matrículas, Rede Estadual, ES (Sinopse Estatística, INEP).</h1>
+<div align="center">
+<table>
+  <colgroup span="4"></colgroup>
+  <tr align="center">
+    <th style="background-color: #038cfc;color: #fff">Ano</th>
+    <th style="background-color: #038cfc;color: #fff">Último ano do Ensino Fundamental</th>
+    <th style="background-color: #038cfc;color: #fff">Terceiro ano do Ensino Médio</th>
+    <th style="background-color: #038cfc;color: #fff">Total</th>
+  </tr>
+  <tr align="center">
+    <td><b>2015</b></td>
+    <td>16.889</td>
+    <td>25.675</td>
+    <td>42.564</td>
+  </tr>
+  <tr align="center">
+    <td><b>2016</b></td>
+    <td>16.189</td>
+    <td>25.101</td>
+    <td>41.290</td>
+  </tr>
+  <tr align="center">
+    <td><b>2017</b></td>
+    <td>15.482</td>
+    <td>25.835</td>
+    <td>41.317</td>
+  </tr>
+  <tr align="center">
+    <td><b>2018</b></td>
+    <td>16.600</td>
+    <td>24.931</td>
+    <td>41.531</td>
+  </tr>
+  <tr align="center">
+    <td><b>2019</b></td>
+    <td>17.721</td>
+    <td>22.794</td>
+    <td>40.515</td>
+  </tr>
+  <tr align="center">
+    <td><b>2021</b></td>
+    <td>19.935</td>
+    <td>27.737</td>
+    <td>47.672</td>
+  </tr>
+  <tr align="center">
+    <td><b>Total</b></td>
+    <td>102.816</td>
+    <td>152.073</td>
+    <td>254.889</td>
+  </tr>
+</table>
+</div>
+
+## Tabela de Contingência
+
+<h1 style="font-size:2vw"; align="center">Estudantes avaliados* no PAEBES</h1>
+<div align="center">
+<table>
+  <colgroup span="3"></colgroup>
+  <tr align="center">
+    <th style="background-color: #038cfc;color: #fff">Ano</th>
+    <th style="background-color: #038cfc;color: #fff">Último ano do Ensino Fundamental</th>
+    <th style="background-color: #038cfc;color: #fff">Terceiro ano do Ensino Médio</th>
+  </tr>
+  <tr align="center">
+    <td>2015</td>
+    <td>14.743</td>
+    <td>20.367</td>
+  </tr>
+  <tr align="center">
+    <td>2016</td>
+    <td>14.185</td>
+    <td>19.980</td>
+  </tr>
+  <tr align="center">
+    <td>2017</td>
+    <td>13.269</td>
+    <td>21.931</td>
+  </tr>
+  <tr align="center">
+    <td>2018</td>
+    <td>14.819</td>
+    <td>21.152</td>
+  </tr>
+  <tr align="center">
+    <td>2019</td>
+    <td>15.506</td>
+    <td>19.144</td>
+  </tr>
+  <tr align="center">
+    <td>2021</td>
+    <td>16.840</td>
+    <td>20.451</td>
+  </tr>
+  <tr align="center">
+    <td>Total</td>
+    <td>89.362</td>
+    <td>123.025</td>
+  </tr>
+</table>
+</div>
+<h4 style="font-size:50%"; align="center">*com a proficiência calculada e questionário preenchido.</h4>
+
+# Evolução dos resultados por características dos estudantes
+
+---
+
+<h1>Das características do estudante</h1><br>
+<p>Para uma melhor visualização da distribuição dos dados em gráficos de caixa e violinos, como veremos, demanda-se categorias binárias de análise. Neste sentido, as características dos discentes que se classificam em mais de duas categorias foram transformadas em binárias.<br><br>Quatro características foram selecionadas para a análise. São elas:</p>
+<p>
+> 1.  A expressão de gênero do estudante, se masculino ou feminino;<br>
+> 2.  A cor/raça do estudante, agregada em brancos e não brancos;<br>
+> 3.	A distorção idade-série, se o estudante está com dois anos ou mais acima da idade-ideal para a série que cursa;<br>
+> 4.	Se o domicílio do estudante é atendido pelo programa do Governo Federal de transferência de renda.</p>
+
+## Tabela de Contingência
+
+<h1 style="font-size:2vw">Estudantes avaliados* no PAEBES - características selecionadas - Ensino Médio</h1>
+<h3 style="font-size:1vw">*com a proficiência calculada e questionário preenchido.</h3>
+<div align="center"><img src="../../img/tabela02_caracteristicasEM.png" alt="tabela"></div>
+
+---
+
+<h1>Da análise preliminar</h1><br><br>
+<p>O diagrama de caixa nos permite visualizar a variação da proficiência dos estudantes entre as diferentes características selecionadas, onde estão localizados 50% dos valores, a mediana, a média e os valores extremos.</p>
+<p>O violino, que é formado pela estimativa de densidade em Kernel (EDK), nos permite visualizar, mais atenuadamente, a probabilidade de os dados assumir certo valor de proficiência, dadas certas características.</p>
+<p>A estimação do impacto está em curso e os resultados apresentados aqui são preliminares. O foco da apresentação são os resultados para o Ensino Médio. Os do Ensino Fundamental estão em apêndice.</p>
+
+# Resultados por gênero
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_gnr_2015-2021.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_gnr_2015-2021.html" style="border:none;" title="Distribuição da proficiência em português, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Masculino, matemática, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (0,4%). Frente a 2019, 2021 registrou uma piora (-1,4%).<br>
+
+<b>Feminino, matemática, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (0,2%). Frente a 2019, 2021 registrou uma piora (-1,5%).<br>
+
+<b>Masculino&Feminino, matemática, Ens. Médio:</b><br>
+
+- Disparidade persistente de cerca de 10 pontos entre os estratos, na série histórica analisada;<br>
+- Média masculina acima da média geral estadual. Média feminina, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Masculino, língua portuguesa, Ens. Médio:</b><br>
+
+- Proficiência média de 2021 é a maior da série analisada (4,1% maior que 2015, 1% maior que 2019).<br>
+
+<b>Feminino, língua portuguesa, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2,3%). Frente a 2019, 2021 registrou uma piora (-1%).<br>
+
+<b>Masculino&Feminino, língua portuguesa, Ens. Médio:</b><br>
+
+- A trajetória da média masculina não foi alterada na série, a feminina, sim. Disparidade de cerca de 10 pontos na série, caiu para 4 pontos em 2021;<br>
+- Média feminina acima da média geral estadual. Média masculina, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p><br><br>
+<p>
+<b>Masculino&Feminino, matemática&língua portuguesa, Ens. Médio:</b><br>
+
+- Enquanto a média masculina tende a se equiparar com a feminina em língua portuguesa, em matemática a disparidade tende a persistir.</p>
+
+# Resultados por raça/cor
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_rca_2015-2021.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_rca_2015-2021.html" style="border:none;" title="Distribuição da proficiência em português, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Branca, matemática, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (1,4%). Frente a 2019, 2021 registrou uma piora (-0,7%).<br>
+
+<b>Não Branca, matemática, Ens. Médio:</b><br>
+
+- Proficiência média em 2021 foi menor que em 2015 (-0,3%) ou 2019 (-2,1%).<br>
+
+<b>Branca&Não Branca, matemática, Ens. Médio:</b><br>
+
+- Disparidade persistente de cerca de 15 pontos entre os estratos, indo a 20 pontos em 2021;<br>
+- Média branca acima da média geral estadual. Média não branca, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Branca, língua portuguesa, Ens. Médio:</b><br>
+
+- Proficiência média de 2021 é a maior da série analisada (4% maior que 2015, 0,6% maior que 2019).<br>
+
+<b>Não Branca, língua portuguesa, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2,4%). Frente a 2019, 2021 registrou uma piora (-0,7%).<br>
+
+<b>Branca&Não Branca, língua portuguesa, Ens. Médio:</b><br>
+
+- A trajetória da média branca não foi alterada na série, a não branca, sim. Disparidade persistente de cerca de 10 pontos entre os estratos, indo a 15 pontos em 2021;<br>
+- Média branca acima da média geral estadual. Média não branca, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p><br><br>
+<p>
+<b>Branca&Não Branca, matemática&língua portuguesa, Ens. Médio:</b><br>
+
+- A disparidade entre as proficiências médias dos estratos, que permanecia estável entre 2015 e 2019, aumentou, tanto em matemática quanto em língua portuguesa, em 2021.</p>
+
+# Resultados por distorção idade-série
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_dis_2015-2021.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_dis_2015-2021.html" style="border:none;" title="Distribuição da proficiência em português, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Sem distorção, matemática, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (0,3%). Frente a 2019, 2021 registrou uma piora (-1,2%).<br>
+
+<b>Em distorção, matemática, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (0,7%). Frente a 2019, 2021 registrou uma piora (-2,8%).<br>
+
+<b>Sem distorção&Em distorção, matemática, Ens. Médio:</b><br>
+
+- Disparidade persistente, na série histórica analisada, de cerca de 30 pontos entre os dois grupos, a maior desigualdade registrada;<br>
+- Média dos estudantes sem distorção idade-série acima da média geral estadual. Média dos em distorção idade-série, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Sem distorção, língua portuguesa, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2,7%). Frente a 2019, 2021 registrou uma estagnação.<br>
+
+<b>Em distorção, língua portuguesa, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (4,9%). Frente a 2019, 2021 registrou uma piora (-1,1%).<br>
+
+<b>Sem distorção&Em distorção, língua portuguesa, Ens. Médio:</b><br>
+
+- Disparidade de 30 pontos registrada em 2015, caiu para 22 pontos em 2019, e subiu para 25 pontos em 2021;<br>
+- Média dos estudantes sem distorção idade-série acima da média geral estadual. Média dos em distorção idade-série, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p><br><br>
+<p>
+<b>Sem distorção&Em distorção, matemática&língua portuguesa, Ens. Médio:</b><br>
+
+- A proficiência média dos estudantes em distorção idade-série registra uma tendência de se equiparar, no longo prazo, com o grupo dos sem distorção. Contudo, essa trajetória foi alterada de 2019 para 2021.</p>
+
+# Resultados por estudantes<br>em domicílios atendidos por<br>programa de transferência<br>de renda
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_bfam_2015-2021.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_bfam_2015-2021.html" style="border:none;" title="Distribuição da proficiência em português, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Sem Bolsa Família, matemática, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (0,5%). Frente a 2019, 2021 registrou uma piora (-1,2%).<br>
+
+<b>Com Bolsa Família, matemática, Ens. Médio:</b><br>
+
+- Proficiência média em 2021 foi menor que em 2015 (-0,2%) ou 2019 (-2,2%).<br>
+
+<b>Sem Bolsa Família&Com Bolsa Família, matemática, Ens. Médio:</b><br>
+
+- Disparidade persistente de cerca de 10 pontos entre os dois grupos, indo a 12 em 2021;<br>
+- Média dos estudantes residentes em domicílios não atendidos pelo Bolsa Família acima da média geral estadual. Média dos residentes em domicílios atendidos, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Sem Bolsa Família, língua portuguesa, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (3%). Frente a 2019, 2021 registrou uma estagnação.<br>
+
+<b>Com Bolsa Família, língua portuguesa, Ens. Médio:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2%). Frente a 2019, 2021 registrou uma piora (-0,7%).<br>
+
+<b>Sem Bolsa Família&Com Bolsa Família, língua portuguesa, Ens. Médio:</b><br>
+
+- Disparidade persistente, na série histórica analisada, de cerca de 10 pontos entre os dois grupos, indo a 13 em 2021;<br>
+- Média dos estudantes residentes em domicílios não atendidos pelo Bolsa Família acima da média geral estadual. Média dos residentes em domicílios atendidos, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p><br><br>
+<p>
+<b>Sem Bolsa Família&Com Bolsa Família, matemática&língua portuguesa, Ens. Médio:</b><br>
+
+- As disparidades entre esses grupos seguem um padrão similar às disparidades observadas entre raças, o que indica uma possível alta correlação entre a vulnerabilidade socioeconômica e a cor dos estudantes.</p>
+
+# Resultados por municípios
+
+---
+
+<h1>Proficiência média por município - Ensino Médio, 2021</h1>
+<iframe src="../../plotly/mt_EM2021_geo.html" style="border:none;" title="Proficiência em matemática - Municípios, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<h1>Proficiência média por município - Ensino Médio, 2021</h1>
+<iframe src="../../plotly/lp_EM2021_geo.html" style="border:none;" title="Proficiência em língua portuguesa - Municípios, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+# Análise de características educacionais de 2021
+
+---
+
+<h1>Das características educacionais do ano de 2021</h1><br><br>
+<p>Selecionou-se quatro perguntas do questionário relativas a características do ensino para essa análise preliminar. São elas:</p><br>
+<p>
+> 1.  Se, em 2021, as aulas foram presenciais, não presenciais ou por revezamento;<br>
+> 2.  Por quantos meses o estudante ficou sem atividades escolares;<br>
+> 3.	Quantas vezes o estudante realizou exercícios, durante o período sem aulas na escola;<br>
+> 4.	Se os pais ou responsáveis arrumaram as condições necessárias para o discente estudar em casa.</p>
+
+## Tabela de Contingência
+
+<h1 style="font-size:2vw">Estudantes avaliados* no PAEBES - características selecionadas - Ensino Médio</h1>
+<h3 style="font-size:1vw">*com a proficiência calculada e questionário preenchido.</h3>
+<div align="center"><img src="../../img/tabela02_pandemiaEM.png" alt="tabela"></div>
+
+# Resultados por gênero<br><br>Matemática, Ensino Médio
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_gnr_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero masculino que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero feminino que estudaram de forma não presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_gnr_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero masculino que ficaram menos de um mês sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero feminino que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_gnr_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero masculino que realizaram mais de 8 exercícios por mês</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero feminino que não realizaram exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_gnr_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero masculino que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero feminino que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por gênero<br><br>Língua Portuguesa, Ensino Médio
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_gnr_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero feminino que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero masculino que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_gnr_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero feminino que ficaram entre um e três meses sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero masculino que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_gnr_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero feminino que realizaram exercícios de cinco a oito vezes por mês</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero masculino cuja escola não disponibilizou exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_gnr_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero feminino que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero masculino que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por raça/cor<br><br>Matemática, Ensino Médio
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_rca_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que estudaram presencialmente</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que estudaram de forma não presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_rca_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes de raça/cor branca que ficaram entre um e três meses, ou mais de seis meses, sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_rca_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes de raça/cor branca que realizaram exercícios de duas a quatro vezes por mês, ou mais de oito vezes</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que realizaram exercícios pelo menos uma vez no mês</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_rca_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por raça/cor<br><br>Língua Portuguesa, Ensino Médio
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_rca_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_rca_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes de raça/cor branca que ficaram menos de um mês, entre um e três meses, ou mais de seis meses sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_rca_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes de raça/cor branca que realizaram exercícios de duas a quatro vezes por mês, ou mais de oito vezes</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que realizaram exercícios pelo menos uma vez no mês</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_rca_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por distorção idade-série<br><br>Matemática, Ensino Médio
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_dis_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes sem distorção idade-série que estudaram de forma presencial ou por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_dis_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes sem distorção idade-série que ficaram mais de seis meses sem atividades escolares</li><br>
+<li>As <b>menores</b> proficiências médias gerais são as de estudantes em distorção idade-série que ficaram mais de seis meses, ou menos de um mês, sem atividades escolares</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_dis_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes sem distorção idade-série que realizaram exercícios de duas a quatro vezes por mês, ou mais de oito vezes</li><br>
+<li>As <b>menores</b> proficiências médias gerais são as de estudantes em distorção idade-série cuja escola não disponibilizou exercícios, ou que realizaram exercícios ao menos uma vez no mês</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_dis_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes sem distorção idade-série que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por distorção idade-série<br><br>Língua Portuguesa, Ensino Médio
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_dis_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes sem distorção idade-série que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_dis_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes sem distorção idade-série que ficaram menos de um mês, entre um e três meses ou mais de seis meses sem atividades escolares</li><br>
+<li>As <b>menores</b> proficiências médias gerais são as de estudantes em distorção idade-série que ficaram entre quatro e seis meses sem atividade escolar, e a de estudantes sem distorção idade-série que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_dis_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes sem distorção idade-série que realizaram exercícios de duas a quatro vezes por mês, ou mais de oito vezes</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série cuja escola não disponibilizou exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_dis_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes sem distorção idade-série que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por estudantes<br>em domicílios atendidos por<br>programa de transferência<br>de renda<br><br>Matemática, Ensino Médio
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_bfam_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que estudaram de forma não presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_bfam_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes em domicílios não atendidos que ficaram entre um e três meses, ou mais de seis meses, sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_bfam_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes em domicílios não atendidos que realizaram exercícios de duas a quatro vezes por mês, ou mais de oito vezes</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que realizaram exercícios pelo menos uma vez no mês</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EM_bfam_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Médio: 285</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por estudantes<br>em domicílios atendidos por<br>programa de transferência<br>de renda<br><br>Língua Portuguesa, Ensino Médio
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_bfam_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_bfam_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes em domicílios não atendidos que ficaram entre um e três meses, ou mais de seis meses, sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_bfam_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes em domicílios não atendidos que realizaram exercícios de duas a quatro vezes por mês ou mais de oito vezes</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que realizaram exercícios ao menos uma vez no mês</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EM_bfam_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Médio: 286</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Médio:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Sobre indicadores
+
+---
+
+<h1>Sugestão</h1><br><br><br><br>
+<p>
+<li style="font-size:120%;">Um painel de indicadores para todas as variáveis é extenso;</li><br>
+<li style="font-size:120%;">A síntese das informações em um índice auxilia na análise dos dados, inclusive para a distribuição conjunta de fatores.</li>
+</p>
+
+---
+
+<h1>Indicador de Nível Socioeconômico - INSE/Inep</h1><br>
+<p>
+- Componentes do INSE: três dimensões, 15 indicadores (continua):
+	- Qual é a maior escolaridade de sua/seu...
+		- Q008 mãe (ou mulher responsável por você)?
+		- Q009 pai (ou homem responsável por você)?
+	- Dos itens relacionados abaixo, quantos existem na sua casa?
+		- Q019 – Geladeira
+		- Q021 – Computador (ou notebook)
+		- Q022 – Quartos para dormir
+		- Q023 – Televisão
+		- Q024 – Banheiro
+		- Q025 – Carro
+</p>
+---
+
+<h1>Indicador de Nível Socioeconômico - INSE/Inep</h1><br>
+<p>
+- Componentes do INSE: três dimensões, 15 indicadores (continuação):
+	- Na sua casa tem:
+		- Q027 – Rede wi-fi?
+		- Q029 – Mesa para estudar (ou escrivaninha)?
+		- Q030 – Garagem?
+		- Q031 – Forno de micro-ondas?
+		- Q032 – Aspirador de pó?
+		- Q033 – Máquina de lavar roupa?
+		- Q034 – Freezer (independente ou segunda porta da geladeira)?
+</p>
+
+---
+
+<h1>Indicador de Nível Socioeconômico - INSE/Inep</h1><br>
+<p>
+>- Etapas da montagem:
+> - 	   Estudo dos respondentes ao questionário e das médias;
+> - 	   Aplicação de pesos;
+> - 	   Aplicação da Teoria de Resposta ao Item;
+> - 	   Definição de níveis e faixas do indicador;
+> - 	   Classificação dos municípios.
+</p>
+
+---
+
+<h1>A metodologia pode ser reproduzida no Paebes?</h1><br>
+<iframe src="../../plotly/PAEBES 2021 QUESTIONÁRIO ESTUDANTE.pdf" style="border:none;" title="Questionário 2021"></iframe>
+
+---
+
+<h1>Possibilidades</h1><br>
+<p>
+Análise de tipos de indicadores e agregações:</p>
+<p>
+> 1.  Indicadores educacionais puros, socioeducacionais, entre outros tipos;<br>
+> 2.  Médias geométricas, aritiméticas e ponderadas;<br>
+> 3.  Distribuições conjuntas/marginais;<br>
+> 4.  Ajustes por desigualdades;<br>
+> 5.  Padronização de dimensões.</p>
+
+# Apêndices
+
+## Tabela de Contingência
+
+<h1 style="font-size:2vw">Estudantes avaliados* no PAEBES - características selecionadas - Ensino Fundamental</h1>
+<h3 style="font-size:1vw">*com a proficiência calculada e questionário preenchido.</h3>
+<div align="center"><img src="../../img/tabela01_caracteristicasEF.png" alt="tabela"></div>
+
+# Resultados por gênero<br><br>Ensino Fundamental, Anos Finais
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_gnr_2015-2021.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Fundamental"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_gnr_2015-2021.html" style="border:none;" title="Distribuição da proficiência em português, Ensino Fundamental"></iframe><br>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Masculino, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2,7%). Frente a 2019, 2021 registrou uma piora (-1,3%).<br>
+
+<b>Feminino, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (1,8%). Frente a 2019, 2021 registrou uma piora (-0,8%).<br>
+
+<b>Masculino&Feminino, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Disparidade persistente de cerca de 6 pontos entre os estratos;<br>
+- Média masculina acima da média geral estadual. Média feminina, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Masculino, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (4,6%). Frente a 2019, 2021 registrou uma piora (-0,3%).<br>
+
+<b>Feminino, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (3,2%). Frente a 2019, 2021 registrou uma piora (-0,9%).<br>
+
+<b>Masculino&Feminino, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Disparidade persistente de cerca de 14 pontos entre os estratos;<br>
+- Média feminina acima da média geral estadual. Média masculina, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p><br><br>
+<p>
+<b>Masculino&Feminino, matemática&língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- A disparidade entre estratos tende a persistir, tanto em matemática quanto em língua portuguesa, com a proficiência média feminina acima da masculina em língua portuguesa, e a masculina ligeiramente acima da feminina em matemática.</p>
+
+# Resultados por raça/cor<br><br>Ensino Fundamental, Anos Finais
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_rca_2015-2021.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Fundamental"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_rca_2015-2021.html" style="border:none;" title="Distribuição da proficiência em português, Ensino Fundamental"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Branca, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (3,7%). Frente a 2019, 2021 registrou uma piora (-0,6%).<br>
+
+<b>Não Branca, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (1,4%). Frente a 2019, 2021 registrou uma piora (-1,4%).<br>
+
+<b>Branca&Não Branca, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Disparidade persistente de cerca de 15 pontos entre os estratos, indo a 18 pontos em 2021;<br>
+- Média branca acima da média geral estadual. Média não branca, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Branca, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média de 2021 é a maior da série analisada (6% maior que 2015, 0,6% maior que 2019).<br>
+
+<b>Não Branca, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2,8%). Frente a 2019, 2021 registrou uma piora (-1,2%).<br>
+
+<b>Branca&Não Branca, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- A trajetória da média branca não foi alterada na série, a não branca, sim. Disparidade persistente de cerca de 11 pontos entre os estratos, indo a 16 pontos em 2021;<br>
+- Média branca acima da média geral estadual. Média não branca, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p><br><br>
+<p>
+<b>Branca&Não Branca, matemática&língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- A desigualdade entre as proficiências médias dos estratos vem em trajetória ascendente desde 2015, e se intensificou em 2021, atingindo o patamar mais elevado da série analisada, tanto em matemática quanto em língua portuguesa.</p>
+
+# Resultados por distorção idade-série<br><br>Ensino Fundamental, Anos Finais
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_dis_2015-2021.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Fundamental"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_dis_2015-2021.html" style="border:none;" title="Distribuição da proficiência em português, Ensino Fundamental"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Sem distorção, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2,3%). Frente a 2019, 2021 registrou uma piora (-1,2%).<br>
+
+<b>Em distorção, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2%). Frente a 2019, 2021 registrou uma piora (-1%).<br>
+
+<b>Sem distorção&Em distorção, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Disparidade persistente de cerca de 25 pontos entre os dois grupos;<br>
+- Média dos estudantes sem distorção idade-série acima da média geral estadual. Média dos em distorção idade-série, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Sem distorção, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (4%). Frente a 2019, 2021 registrou uma piora (-0,4%).<br>
+
+<b>Em distorção, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (3%). Frente a 2019, 2021 registrou uma piora (-2,2%).<br>
+
+<b>Sem distorção&Em distorção, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Disparidade média de 25 pontos registrada na série, indo a 29 pontos em 2021, a maior desigualdade registrada;<br>
+- Média dos estudantes sem distorção idade-série acima da média geral estadual. Média dos em distorção idade-série, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p><br><br>
+<p>
+<b>Sem distorção&Em distorção, matemática&língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- A desigualdade da proficiência média entre os grupos está relativamente estável, tanto em matemática quanto em língua portuguesa.</p>
+
+# Resultados por estudantes<br>em domicílios atendidos por<br>programa de transferência<br>de renda<br><br>Ensino Fundamental, Anos Finais
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_bfam_2015-2021.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Fundamental"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_bfam_2015-2021.html" style="border:none;" title="Distribuição da proficiência em português, Ensino Fundamental"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Sem Bolsa Família, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2,2%). Frente a 2019, 2021 registrou uma piora (-1%).<br>
+
+<b>Com Bolsa Família, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (1,8%). Frente a 2019, 2021 registrou uma piora (-0,8%).<br>
+
+<b>Sem Bolsa Família&Com Bolsa Família, matemática, Ens. Fundamental, Anos Finais:</b><br>
+
+- Disparidade persistente de cerca de 14 pontos entre os dois grupos;<br>
+- Média dos estudantes residentes em domicílios não atendidos pelo Bolsa Família acima da média geral estadual. Média dos residentes em domicílios atendidos, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p>
+<p>
+<b>Sem Bolsa Família, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (4%). Frente a 2019, 2021 registrou uma estagnação.<br>
+
+<b>Com Bolsa Família, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Proficiência média melhorou de 2015 para 2021 (2,5%). Frente a 2019, 2021 registrou uma piora (-1%).<br>
+
+<b>Sem Bolsa Família&Com Bolsa Família, língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- Disparidade persistente de cerca de 13 pontos entre os dois grupos, indo a 16 em 2021;<br>
+- Média dos estudantes residentes em domicílios não atendidos pelo Bolsa Família acima da média geral estadual. Média dos residentes em domicílios atendidos, abaixo.
+</p>
+
+---
+
+<p>Resumo - tendência visualizada nos gráficos:</p><br><br>
+<p>
+<b>Sem Bolsa Família&Com Bolsa Família, matemática&língua portuguesa, Ens. Fundamental, Anos Finais:</b><br>
+
+- A desigualdade da proficiência média em matemática entre os grupos está relativamente estável. Em língua portuguesa, há uma tendência de alta.</p>
+
+# Resultados por municípios<br><br>Ensino Fundamental, Anos Finais
+
+---
+
+<h1>Proficiência média por município - Matemática, Ensino Fundamental, 2021</h1>
+<iframe src="../../plotly/mt_EF2021_geo.html" style="border:none;" title="Proficiência em matemática - Municípios, Ensino Fundamental"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<h1>Proficiência média por município - Língua Portuguesa, Ensino Fundamental, 2021</h1>
+<iframe src="../../plotly/lp_EF2021_geo.html" style="border:none;" title="Proficiência em língua portuguesa - Municípios, Ensino Fundamental"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+# Resultados de 2021
+
+## Tabela de Contingência
+
+<h1 style="font-size:2vw">Estudantes avaliados* no PAEBES - características selecionadas - Ensino Fundamental</h1>
+<h3 style="font-size:1vw">*com a proficiência calculada e questionário preenchido.</h3>
+<div align="center"><img src="../../img/tabela01_pandemiaEF.png" alt="tabela"></div>
+
+# Resultados por gênero<br><br>Matemática, Ensino Fundamental
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_gnr_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero masculino que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero feminino que estudaram de forma não presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_gnr_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero masculino que ficaram mais de seis meses sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero feminino que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_gnr_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero masculino que realizaram mais de 8 exercícios por mês</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero feminino cuja escola não disponibilizou exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_gnr_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero masculino que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero feminino que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por gênero<br><br>Língua Portuguesa, Ensino Fundamental
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_gnr_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero feminino que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero masculino que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_gnr_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero feminino que ficaram mais de seis meses sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero masculino que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_gnr_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero feminino que realizaram exercícios mais de oito vezes por mês</li><br>
+<li>As <b>menores</b> proficiências médias gerais são as de estudantes do gênero masculino cuja escola não disponibilizou exercícios, ou que não realizaram exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_gnr_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes do gênero feminino que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes do gênero masculino que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por raça/cor<br><br>Matemática, Ensino Fundamental
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_rca_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que estudaram de forma não presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_rca_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que ficaram entre um e três meses sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_rca_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que realizaram exercícios mais de oito vezes por mês</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca cuja escola não disponibilizou exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_rca_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por raça/cor<br><br>Língua Portuguesa, Ensino Fundamental
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_rca_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_rca_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes de raça/cor branca que ficaram entre um e três meses, ou mais de seis meses sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_rca_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes de raça/cor branca que realizaram exercícios de cinco a oito vezes por mês, ou mais de oito vezes</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca cuja escola não disponibilizou exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_rca_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes de raça/cor branca que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes de raça/cor não branca que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por distorção idade-série<br><br>Matemática, Ensino Fundamental
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_dis_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes sem distorção idade-série que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_dis_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes sem distorção idade-série que ficaram menos de um mês, entre um e três meses, ou mais de seis meses sem atividades escolares</li><br>
+<li>As <b>menores</b> proficiências médias gerais são as de estudantes em distorção idade-série que ficaram menos de um mês ou que ficaram sem atividades escolares por todo o período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_dis_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes sem distorção idade-série que realizaram exercícios mais de oito vezes por mês</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série que realizaram exercícios ao menos uma vez no mês</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_dis_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes sem distorção idade-série que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por distorção idade-série<br><br>Língua Portuguesa, Ensino Fundamental
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_dis_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes sem distorção idade-série que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_dis_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes sem distorção idade-série que ficaram menos de um mês, entre um e três meses ou mais de seis meses sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_dis_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes sem distorção idade-série que realizaram exercícios de cinco a oito vezes por mês, ou mais de oito vezes</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em distorção idade-série cuja escola não disponibilizou exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_dis_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes sem distorção idade-série que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>As <b>menores</b> proficiências médias gerais são as de estudantes em distorção idade-série que não concordam ou concordam pouco que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por estudantes<br>em domicílios atendidos por<br>programa de transferência<br>de renda<br><br>Matemática, Ensino Fundamental
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_bfam_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_bfam_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes em domicílios não atendidos que ficaram menos de um mês, entre um e três meses, ou mais de seis meses sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_bfam_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que realizaram exercícios mais de oito vezes por mês</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos cuja escola não disponibilizou exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/mt_EF_bfam_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em matemática, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Matemática, Ensino Fundamental: 257</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Matemática, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+# Resultados por estudantes<br>em domicílios atendidos por<br>programa de transferência<br>de renda<br><br>Língua Portuguesa, Ensino Fundamental
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_bfam_2021_RQ22.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que estudaram por revezamento</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que estudaram de forma presencial</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_bfam_2021_RQ23.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>As <b>maiores</b> proficiências médias gerais são as de estudantes em domicílios não atendidos que ficaram entre um e três meses, ou mais de seis meses sem atividades escolares</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que não tiveram nenhuma atividade escolar no período</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_bfam_2021_RQ34.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que realizaram exercícios mais de oito vezes por mês</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos cuja escola não disponibilizou exercícios</li>
+</p>
+
+---
+
+<h1>Análise da distribuição: tendência central e dispersão.</h1>
+<br>
+<iframe src="../../plotly/lp_EF_bfam_2021_RQ55.html" style="border:none;" title="Distribuição da proficiência em língua portuguesa, Ensino Médio"></iframe>
+<p style="font-size:70%">Proficiência Média Estadual, Língua Portuguesa, Ensino Fundamental: 255</p>
+
+---
+
+<p>Tendência visualizada nos gráficos - Língua Portuguesa, Ensino Fundamental:</p><br>
+<p>
+<li>A <b>maior</b> proficiência média geral é a de estudantes em domicílios não atendidos que concordam muito que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li><br>
+<li>A <b>menor</b> proficiência média geral é a de estudantes em domicílios atendidos que não concordam que os pais/responsáveis arrumaram as condições necessárias para o estudo em casa</li>
+</p>
+
+
+
+
